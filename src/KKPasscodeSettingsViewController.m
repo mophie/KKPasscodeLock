@@ -19,7 +19,7 @@
 #import "KKKeychain.h"
 #import "KKPasscodeViewController.h"
 #import "KKPasscodeLock.h"
-
+#import "KKPasscodeNavigationController.h"
 
 @implementation KKPasscodeSettingsViewController
 
@@ -102,6 +102,11 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
 	return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) || (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+   return [[KKPasscodeLock sharedLock] supportedInterfaceOrientations];
 }
 
 #pragma mark -
@@ -245,7 +250,7 @@
 			vc.mode = KKPasscodeModeSet;
 		}
 		
-        UINavigationController *nav = [[UINavigationController alloc]
+        UINavigationController *nav = [[KKPasscodeNavigationController alloc]
                                        initWithNavigationBarClass:[self.navigationController.navigationBar class]
                                        toolbarClass:[self.navigationController.toolbar class]];
         nav.viewControllers = @[vc];
@@ -273,7 +278,7 @@
 		
 		vc.mode = KKPasscodeModeChange;
 		
-        UINavigationController *nav = [[UINavigationController alloc]
+        UINavigationController *nav = [[KKPasscodeNavigationController alloc]
                                        initWithNavigationBarClass:[self.navigationController.navigationBar class]
                                        toolbarClass:[self.navigationController.toolbar class]];
         nav.viewControllers = @[vc];		
