@@ -264,7 +264,7 @@
             id<UIApplicationDelegate> appDelegate = [[UIApplication sharedApplication] delegate];
             self.dimView = [[UIView alloc] initWithFrame:appDelegate.window.rootViewController.view.bounds];
             self.dimView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            self.dimView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+            self.dimView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
             self.dimView.alpha = 0.0f;
             [appDelegate.window.rootViewController.view addSubview:self.dimView];
             [UIView animateWithDuration:0.3f animations:^{
@@ -334,7 +334,7 @@
 	} else {
 		_failedAttemptsLabel.text = [NSString stringWithFormat:KKPasscodeLockLocalizedString(@"%i Failed Passcode Attempts", @""), _failedAttemptsCount];
 	}
-	CGSize size = [_failedAttemptsLabel.text sizeWithFont:[UIFont boldSystemFontOfSize:self.isSmallLandscape ? 10.0f : 14.0f]];
+	CGSize size = [_failedAttemptsLabel.text sizeWithAttributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:self.isSmallLandscape ? 10.0f : 14.0f] }];
 	_failedAttemptsLabel.frame = _failedAttemptsView.frame = CGRectMake((self.view.bounds.size.width - (size.width + (self.isSmallLandscape ? 20.0f : 40.0f))) / 2, self.isSmallLandscape ? 75.0f : 150.0f, size.width + (self.isSmallLandscape ? 20.0f : 40.0f), size.height + (self.isSmallLandscape ? 5.0f : 10.0f));
 	
 	CAGradientLayer *gradient = [CAGradientLayer layer];
